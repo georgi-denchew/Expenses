@@ -1,0 +1,27 @@
+.table-column {
+    max-width: 200px;
+}
+
+td {
+    padding: 5px;
+}
+
+#login-form, #registration-form {
+    width: 500px;
+    margin: 0 auto;
+}
+
+#add-expense{
+    width: 300px;
+    margin: 0 auto;
+}
+
+#navigation-form{
+    display: block;
+}
+
+#expense-categories-chart{
+    width: 400px;
+    margin: 0 auto;
+    
+}

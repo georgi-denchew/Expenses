@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="content">
+        <h:form id="add-expense" prependId="false" class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label" for="selectedCategoryId">Select category</label>
+                <h:selectOneMenu class="form-control" id="selectedCategoryId" value="#{expensesController.selectedCategoryId}">
+                    <f:selectItems value="#{expensesController.categoriesSelectList}"
+                                   var="category" itemValue="#{category.value}" 
+                                   itemLabel="#{category.label}"/>
+                </h:selectOneMenu>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="expenseDescription">Description</label>
+                <h:inputTextarea rows="3" required="true" requiredMessage="Description is required" class="form-control" id="expenseDescription" value="#{expensesController.expenseToAdd.description}"/>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="expensePrice">Price</label>
+                <h:inputText required="true" requiredMessage="Price is required" class="form-control" id="expensePrice" value="#{expensesController.expenseToAdd.price}"/>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="expenseDate">Made on (e.g. 01-31-2013 11:45:55)</label>
+                <h:selectOneRadio value="#{expensesController.useCurrentDate}">
+                    <f:selectItem itemLabel="current date" itemValue="#{true}"/>
+                    <f:selectItem itemLabel="other date:" itemValue="#{false}"/>
+                    <f:ajax render="date-group"/>
+                </h:selectOneRadio>
+                <h:panelGroup id="date-group">
+                    <h:inputText disabled="#{expensesController.useCurrentDate}" class="form-control" id="expenseDate" 
+                        value="#{expensesController.expenseToAdd.date}">                 
+                        <f:convertDateTime pattern="dd.MM.yyyy hh:mm:ss"/>
+                    </h:inputText>
+                </h:panelGroup>
+            </div>
+            <div class="form-group">
+                <h:commandButton action="#{expensesController.addExpense()}" value="Add expense" class="btn btn-primary"/>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

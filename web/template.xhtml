@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/bootstrap.css"/>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputScript name="./javascript/sha1.js"/>
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+        <div id="top" class="top">
+            <ui:insert name="top">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <h:panelGroup rendered="#{usersController.hasSessionKey()}" class="btn-group">
+                                    <h:link outcome="/expenses/add-expense" value="Add New Expense" class="btn btn-success"/>
+                                    <h:link outcome="/expenses/all-expenses" value="All Expenses" class="btn btn-info"/>
+                                </h:panelGroup>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <h:form id="navigation-form">
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <h:link outcome="login" value="Login" class="btn btn-default"
+                                                rendered="#{!usersController.hasSessionKey()}"/>
+                                        <h:link outcome="register" value="Register" class="btn btn-info"
+                                                rendered="#{!usersController.hasSessionKey()}"/>
+                                    </div>
+
+                                    <h:commandLink action="#{usersController.logout}" value="Logout" class="btn btn-warning"
+                                                   rendered="#{usersController.hasSessionKey()}"/>
+                                </h:form>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </ui:insert>
+        </div>
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+    </h:body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 7, 2014 5:40:32 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="expensesDb.Userscategories" table="userscategories" catalog="expenses">
+        <composite-id name="id" class="expensesDb.UserscategoriesId">
+            <key-property name="userId" type="int">
+                <column name="UserId" />
+            </key-property>
+            <key-property name="categoryId" type="int">
+                <column name="CategoryId" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="categories" class="expensesDb.Categories" update="false" insert="false" fetch="select">
+            <column name="CategoryId" not-null="true" />
+        </many-to-one>
+        <many-to-one name="users" class="expensesDb.Users" update="false" insert="false" fetch="select">
+            <column name="UserId" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

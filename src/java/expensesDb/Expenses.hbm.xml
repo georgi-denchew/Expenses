@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 7, 2014 5:40:32 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="expensesDb.Expenses" table="expenses" catalog="expenses">
+        <id name="expenseId" type="java.lang.Integer">
+            <column name="ExpenseId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="categories" class="expensesDb.Categories" fetch="select">
+            <column name="CategoryId" not-null="true" />
+        </many-to-one>
+        <many-to-one name="users" class="expensesDb.Users" fetch="select">
+            <column name="UserId" not-null="true" />
+        </many-to-one>
+        <property name="description" type="string">
+            <column name="Description" length="300" not-null="true" />
+        </property>
+        <property name="date" type="timestamp">
+            <column name="Date" length="19" not-null="true" />
+        </property>
+        <property name="price" type="big_decimal">
+            <column name="Price" precision="10" scale="2" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

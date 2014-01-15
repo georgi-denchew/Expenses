@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 7, 2014 5:40:32 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="expensesDb.Users" table="users" catalog="expenses">
+        <id name="userId" type="java.lang.Integer">
+            <column name="UserId" />
+            <generator class="identity" />
+        </id>
+        <property name="username" type="string">
+            <column name="Username" length="45" not-null="true" />
+        </property>
+        <property name="authCode" type="string">
+            <column name="AuthCode" length="40" not-null="true" />
+        </property>
+        <property name="sessionKey" type="string">
+            <column name="sessionKey" length="50" />
+        </property>
+        <set name="userscategorieses" table="userscategories" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserId" not-null="true" />
+            </key>
+            <one-to-many class="expensesDb.Userscategories" />
+        </set>
+        <set name="expenseses" table="expenses" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserId" not-null="true" />
+            </key>
+            <one-to-many class="expensesDb.Expenses" />
+        </set>
+    </class>
+</hibernate-mapping>
