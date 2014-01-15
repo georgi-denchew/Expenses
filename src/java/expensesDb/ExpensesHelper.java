@@ -34,7 +34,7 @@ public class ExpensesHelper {
 
     public List<Expenses> getAllExpenses(String sessionKey) {
 
-        List<Expenses> resultList = null;
+        List<Expenses> resultList = new ArrayList<>();
 
         Transaction transaction = this.session.beginTransaction();
 
